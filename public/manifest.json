@@ -1,0 +1,17 @@
+{
+  "name": "Willma Matoso dos Santos — Assistente Financeira",
+  "short_name": "Willma Matoso",
+  "description": "Portfólio profissional de Willma Gabriela Matoso dos Santos, Assistente Financeira especializada em gestão financeira e sistemas ERP.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#0F172A",
+  "lang": "pt-BR",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
