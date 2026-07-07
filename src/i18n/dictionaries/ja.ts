@@ -34,7 +34,7 @@ export const dictionaryJa: Dictionary = {
     phone: "(91) 98523-3514",
     linkedin: "",
     whatsapp: "https://wa.me/5591985233514",
-    resumeUrl: "/cv/curriculo-willma-matoso-dos-santos.pdf",
+    resumeUrl: "/cv/Curriculo_Willma_Gabriela.pdf",
   },
   navigation: [
     { label: "自己紹介", href: "#sobre" },

@@ -34,7 +34,7 @@ export const dictionaryPt: Dictionary = {
     phone: "(91) 98523-3514",
     linkedin: "",
     whatsapp: "https://wa.me/5591985233514",
-    resumeUrl: "/cv/curriculo-willma-matoso-dos-santos.pdf",
+    resumeUrl: "/cv/Curriculo_Willma_Gabriela.pdf",
   },
   navigation: [
     { label: "Sobre", href: "#sobre" },
@@ -140,7 +140,7 @@ export const dictionaryPt: Dictionary = {
       {
         id: "exp-3",
         company: "COMPAR (Coca-Cola)",
-        role: "Aprendiz",
+        role: "Auxiliar de Escritório",
         period: "Fev 2016 — Jan 2018",
         location: "Belém, PA",
         responsibilities: [
@@ -231,7 +231,7 @@ export const dictionaryPt: Dictionary = {
     explore: "Explorar",
     contact: "Contato",
     backToTop: "Voltar ao topo",
-    downloadToast: "Currículo baixado — boa sorte na sua jornada!",
+    downloadToast: "Currículo baixado!",
     resume: "Currículo",
     completed: "Concluído",
     inProgress: "Em andamento",

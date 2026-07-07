@@ -49,7 +49,7 @@ export const experienceData = {
     {
       id: "exp-3",
       company: "COMPAR (Coca-Cola)",
-      role: "Aprendiz",
+      role: "Auxiliar de Escritório",
       period: "Fev 2016 — Jan 2018",
       location: "Belém, PA",
       responsibilities: [
