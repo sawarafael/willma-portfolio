@@ -3,9 +3,11 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUp } from "lucide-react";
+import { useDictionary } from "@/i18n/dictionary-provider";
 import { scrollToTop } from "@/lib/scroll";
 
 export function BackToTop() {
+  const { dictionary } = useDictionary();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -26,7 +28,7 @@ export function BackToTop() {
           transition={{ duration: 0.25 }}
           onClick={scrollToTop}
           className="fixed bottom-6 right-6 z-50 flex h-11 w-11 items-center justify-center rounded-full border border-border bg-white text-primary shadow-soft-md transition-colors hover:border-accent/30 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
-          aria-label="Voltar ao topo"
+          aria-label={dictionary.ui.backToTop}
         >
           <ArrowUp className="h-4 w-4" />
         </motion.button>

@@ -3,9 +3,11 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
+import { useDictionary } from "@/i18n/dictionary-provider";
 import { DOWNLOAD_CELEBRATION_EVENT } from "@/lib/download-celebration";
 
 export function DownloadToast() {
+  const { dictionary } = useDictionary();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -33,7 +35,7 @@ export function DownloadToast() {
         >
           <CheckCircle2 className="h-5 w-5 text-accent" aria-hidden="true" />
           <p className="text-sm font-medium text-primary">
-            Currículo baixado — boa sorte na sua jornada!
+            {dictionary.ui.downloadToast}
           </p>
         </motion.div>
       )}

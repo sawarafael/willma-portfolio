@@ -2,8 +2,7 @@
 
 import Link from "next/link";
 import { Mail, MessageCircle } from "lucide-react";
-import { ctaData } from "@/data/cta";
-import { siteConfig } from "@/data/site";
+import { useDictionary } from "@/i18n/dictionary-provider";
 import { buttonVariants } from "@/components/ui/button";
 import { FadeIn } from "@/components/shared/fade-in";
 import { ResumeDownloadLink } from "@/components/shared/resume-download-link";
@@ -11,6 +10,9 @@ import { SectionWrapper } from "@/components/shared/section-wrapper";
 import { cn } from "@/lib/utils";
 
 export function CtaSection() {
+  const { dictionary } = useDictionary();
+  const { site, cta } = dictionary;
+
   return (
     <SectionWrapper id="contato">
       <FadeIn>
@@ -22,35 +24,35 @@ export function CtaSection() {
 
           <div className="relative mx-auto max-w-2xl">
             <h2 className="text-3xl font-semibold tracking-tight text-primary md:text-4xl">
-              {ctaData.title}
+              {cta.title}
             </h2>
             <p className="mt-4 text-base leading-relaxed text-text md:text-lg">
-              {ctaData.description}
+              {cta.description}
             </p>
 
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <a
-                href={siteConfig.whatsapp}
+                href={site.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={cn(buttonVariants({ variant: "default", size: "lg" }))}
               >
                 <MessageCircle className="h-4 w-4" />
-                {ctaData.primaryButton}
+                {cta.primaryButton}
               </a>
               <ResumeDownloadLink
                 variant="secondary"
                 size="lg"
-                label={ctaData.secondaryButton}
+                label={cta.secondaryButton}
               />
             </div>
 
             <Link
-              href={`mailto:${siteConfig.email}`}
+              href={`mailto:${site.email}`}
               className="mt-6 inline-flex items-center gap-2 text-sm text-text transition-colors hover:text-accent"
             >
               <Mail className="h-4 w-4" />
-              {siteConfig.email}
+              {site.email}
             </Link>
           </div>
         </div>

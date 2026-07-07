@@ -1,5 +1,7 @@
+"use client";
+
 import { Award } from "lucide-react";
-import { certificatesData } from "@/data/certificates";
+import { useDictionary } from "@/i18n/dictionary-provider";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/shared/fade-in";
 import {
@@ -8,17 +10,20 @@ import {
 } from "@/components/shared/section-wrapper";
 
 export function CertificatesSection() {
+  const { dictionary } = useDictionary();
+  const { certificates } = dictionary;
+
   return (
     <SectionWrapper id="certificados">
       <FadeIn>
         <SectionHeader
-          title={certificatesData.title}
-          subtitle={certificatesData.subtitle}
+          title={certificates.title}
+          subtitle={certificates.subtitle}
         />
       </FadeIn>
 
       <StaggerContainer className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {certificatesData.items.map((cert) => (
+        {certificates.items.map((cert) => (
           <StaggerItem key={cert.id}>
             <Card className="h-full">
               <CardHeader className="pb-3">

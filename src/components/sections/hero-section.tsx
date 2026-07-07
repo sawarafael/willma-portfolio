@@ -2,8 +2,7 @@
 
 import Image from "next/image";
 import { ArrowDown, Linkedin, Mail } from "lucide-react";
-import { heroData } from "@/data/hero";
-import { siteConfig } from "@/data/site";
+import { useDictionary } from "@/i18n/dictionary-provider";
 import { buttonVariants } from "@/components/ui/button";
 import { FadeIn } from "@/components/shared/fade-in";
 import { ResumeDownloadLink } from "@/components/shared/resume-download-link";
@@ -12,6 +11,9 @@ import { SectionWrapper } from "@/components/shared/section-wrapper";
 import { cn } from "@/lib/utils";
 
 export function HeroSection() {
+  const { dictionary } = useDictionary();
+  const { site, hero, ui } = dictionary;
+
   return (
     <SectionWrapper
       id="inicio"
@@ -22,25 +24,25 @@ export function HeroSection() {
         <div className="order-2 lg:order-1">
           <FadeIn delay={0.1}>
             <p className="text-sm font-medium tracking-wide text-accent uppercase">
-              {siteConfig.role}
+              {site.role}
             </p>
           </FadeIn>
 
           <FadeIn delay={0.2}>
             <h1 className="mt-4 text-4xl font-semibold leading-[1.1] tracking-tight text-primary sm:text-5xl lg:text-6xl">
-              {siteConfig.name}
+              {site.name}
             </h1>
           </FadeIn>
 
           <FadeIn delay={0.3}>
             <p className="mt-6 text-xl font-medium leading-snug text-secondary sm:text-2xl">
-              {heroData.headline}
+              {hero.headline}
             </p>
           </FadeIn>
 
           <FadeIn delay={0.4}>
             <p className="mt-4 max-w-lg text-base leading-relaxed text-text md:text-lg">
-              {heroData.description}
+              {hero.description}
             </p>
           </FadeIn>
 
@@ -49,24 +51,24 @@ export function HeroSection() {
               <ResumeDownloadLink
                 variant="default"
                 size="lg"
-                label={heroData.cta.resume}
+                label={hero.cta.resume}
               />
               <SectionLink
                 href="#contato"
                 className={cn(buttonVariants({ variant: "secondary", size: "lg" }))}
               >
                 <Mail className="h-4 w-4" />
-                {heroData.cta.contact}
+                {hero.cta.contact}
               </SectionLink>
-              {siteConfig.linkedin && (
+              {site.linkedin && (
                 <a
-                  href={siteConfig.linkedin}
+                  href={site.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={cn(buttonVariants({ variant: "outline", size: "lg" }))}
                 >
                   <Linkedin className="h-4 w-4" />
-                  {heroData.cta.linkedin}
+                  {hero.cta.linkedin}
                 </a>
               )}
             </div>
@@ -76,8 +78,8 @@ export function HeroSection() {
         <FadeIn delay={0.2} direction="left" className="order-1 lg:order-2">
           <div className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-2xl border border-border bg-slate-50 shadow-soft-lg sm:max-w-md lg:max-w-none">
             <Image
-              src={heroData.image.src}
-              alt={heroData.image.alt}
+              src={hero.image.src}
+              alt={hero.image.alt}
               fill
               priority
               className="object-cover object-top"
@@ -91,10 +93,10 @@ export function HeroSection() {
         <SectionLink
           href="#sobre"
           className="group flex flex-col items-center gap-2 text-text transition-colors hover:text-accent"
-          ariaLabel="Rolar para a seção Sobre"
+          ariaLabel={ui.scrollToAbout}
         >
           <span className="text-xs font-medium tracking-wider uppercase">
-            Explorar
+            {ui.explore}
           </span>
           <ArrowDown className="h-4 w-4 animate-bounce transition-colors group-hover:text-accent" />
         </SectionLink>

@@ -3,15 +3,18 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { navigation, siteConfig } from "@/data/site";
+import { LanguageSwitcher } from "@/components/layout/language-switcher";
+import { useDictionary } from "@/i18n/dictionary-provider";
 import { useScrollSpy } from "@/hooks/use-scroll-spy";
 import { HEADER_OFFSET } from "@/lib/scroll";
 import { SectionLink } from "@/components/shared/section-link";
 import { cn } from "@/lib/utils";
 
-const sectionIds = navigation.map((item) => item.href.replace("#", ""));
-
 export function Header() {
+  const { dictionary } = useDictionary();
+  const { site, navigation, ui } = dictionary;
+  const sectionIds = navigation.map((item) => item.href.replace("#", ""));
+
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const activeId = useScrollSpy(["inicio", ...sectionIds], HEADER_OFFSET + 20);
@@ -42,15 +45,15 @@ export function Header() {
       )}
     >
       <nav
-        className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-6 lg:px-8"
-        aria-label="Navegação principal"
+        className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-3 px-5 sm:px-6 lg:px-8"
+        aria-label={ui.navigation}
       >
         <SectionLink
           href="#inicio"
           onNavigate={closeMenu}
-          className="relative text-sm font-semibold tracking-tight text-primary transition-opacity hover:opacity-70"
+          className="relative shrink-0 text-sm font-semibold tracking-tight text-primary transition-opacity hover:opacity-70"
         >
-          {siteConfig.name.split(" ")[0]}
+          {site.name.split(" ")[0]}
           <span className="text-accent">.</span>
         </SectionLink>
 
@@ -88,22 +91,28 @@ export function Header() {
           })}
         </ul>
 
-        <SectionLink
-          href="#contato"
-          className="hidden rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white shadow-soft transition-all hover:bg-primary/90 active:scale-[0.98] md:inline-flex"
-        >
-          Contato
-        </SectionLink>
+        <div className="hidden items-center gap-3 md:flex">
+          <LanguageSwitcher />
+          <SectionLink
+            href="#contato"
+            className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white shadow-soft transition-all hover:bg-primary/90 active:scale-[0.98]"
+          >
+            {ui.contact}
+          </SectionLink>
+        </div>
 
-        <button
-          type="button"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-primary transition-colors hover:bg-slate-50 md:hidden"
-          onClick={() => setIsOpen(!isOpen)}
-          aria-expanded={isOpen}
-          aria-label={isOpen ? "Fechar menu" : "Abrir menu"}
-        >
-          {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
+        <div className="flex items-center gap-2 md:hidden">
+          <LanguageSwitcher />
+          <button
+            type="button"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-primary transition-colors hover:bg-slate-50"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-expanded={isOpen}
+            aria-label={isOpen ? ui.closeMenu : ui.openMenu}
+          >
+            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
       </nav>
 
       <AnimatePresence>
@@ -116,7 +125,7 @@ export function Header() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
               className="fixed inset-0 top-16 z-40 bg-primary/10 backdrop-blur-[2px] md:hidden"
-              aria-label="Fechar menu"
+              aria-label={ui.closeMenu}
               onClick={closeMenu}
             />
             <motion.div
@@ -164,7 +173,7 @@ export function Header() {
                     onNavigate={closeMenu}
                     className="block rounded-lg bg-primary px-4 py-3 text-center text-base font-medium text-white"
                   >
-                    Contato
+                    {ui.contact}
                   </SectionLink>
                 </motion.li>
               </ul>

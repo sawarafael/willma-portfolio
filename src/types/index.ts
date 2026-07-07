@@ -75,7 +75,7 @@ export interface EducationItem {
   institution: string;
   degree: string;
   period: string;
-  status: "concluído" | "em andamento";
+  status: "completed" | "inProgress";
   description?: string;
 }
 

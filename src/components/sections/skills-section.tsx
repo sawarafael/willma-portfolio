@@ -1,3 +1,5 @@
+"use client";
+
 import {
   ArrowDownLeft,
   ArrowUpRight,
@@ -13,7 +15,7 @@ import {
   Users,
   type LucideIcon,
 } from "lucide-react";
-import { skillsData } from "@/data/skills";
+import { useDictionary } from "@/i18n/dictionary-provider";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/shared/fade-in";
 import {
@@ -37,17 +39,17 @@ const iconMap: Record<string, LucideIcon> = {
 };
 
 export function SkillsSection() {
+  const { dictionary } = useDictionary();
+  const { skills } = dictionary;
+
   return (
     <SectionWrapper id="competencias">
       <FadeIn>
-        <SectionHeader
-          title={skillsData.title}
-          subtitle={skillsData.subtitle}
-        />
+        <SectionHeader title={skills.title} subtitle={skills.subtitle} />
       </FadeIn>
 
       <StaggerContainer className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {skillsData.items.map((skill) => {
+        {skills.items.map((skill) => {
           const Icon = iconMap[skill.icon] ?? Briefcase;
           return (
             <StaggerItem key={skill.title}>

@@ -9,7 +9,7 @@ export const educationData = {
       institution: "Universidade Estácio de Sá",
       degree: "Bacharelado em Administração (EAD)",
       period: "Cursando",
-      status: "em andamento",
+      status: "inProgress",
       description:
         "Formação superior com foco em gestão empresarial, finanças corporativas e processos administrativos.",
     },

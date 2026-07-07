@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { educationData } from "@/data/education";
+import { useDictionary } from "@/i18n/dictionary-provider";
 import { Badge } from "@/components/ui/badge";
 import { FadeIn } from "@/components/shared/fade-in";
 import { SectionUniverseBackground } from "@/components/shared/section-universe-background";
@@ -9,6 +9,8 @@ import { TimelineStarMarker } from "@/components/shared/timeline-star-marker";
 import { SectionHeader } from "@/components/shared/section-wrapper";
 
 export function EducationSection() {
+  const { dictionary } = useDictionary();
+  const { education, ui } = dictionary;
   const sectionRef = useRef<HTMLElement>(null);
 
   return (
@@ -22,8 +24,8 @@ export function EducationSection() {
       <div className="relative z-10 mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
         <FadeIn>
           <SectionHeader
-            title={educationData.title}
-            subtitle={educationData.subtitle}
+            title={education.title}
+            subtitle={education.subtitle}
             className="[&_h2]:text-white [&_p]:text-slate-300"
           />
         </FadeIn>
@@ -35,7 +37,7 @@ export function EducationSection() {
           />
 
           <div className="space-y-8">
-            {educationData.items.map((item, index) => (
+            {education.items.map((item, index) => (
               <FadeIn key={item.id} delay={index * 0.1}>
                 <div className="relative pl-12">
                   <TimelineStarMarker
@@ -50,12 +52,12 @@ export function EducationSection() {
                       </p>
                       <Badge
                         variant={
-                          item.status === "concluído" ? "secondary" : "default"
+                          item.status === "completed" ? "secondary" : "default"
                         }
                       >
-                        {item.status === "concluído"
-                          ? "Concluído"
-                          : "Em andamento"}
+                        {item.status === "completed"
+                          ? ui.completed
+                          : ui.inProgress}
                       </Badge>
                     </div>
                     <h3 className="mt-2 text-lg font-semibold text-primary">

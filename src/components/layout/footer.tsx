@@ -1,26 +1,28 @@
 "use client";
 
 import { Linkedin, Mail, MessageCircle } from "lucide-react";
-import { footerData, siteConfig } from "@/data/site";
+import { useDictionary } from "@/i18n/dictionary-provider";
 import { ResumeDownloadLink } from "@/components/shared/resume-download-link";
 import { SectionLink } from "@/components/shared/section-link";
 
 export function Footer() {
+  const { dictionary } = useDictionary();
+  const { site, footer, ui } = dictionary;
+  const year = new Date().getFullYear();
+
   return (
     <footer className="border-t border-border bg-white">
       <div className="mx-auto max-w-6xl px-5 py-12 sm:px-6 lg:px-8 lg:py-16">
         <div className="grid gap-10 md:grid-cols-3">
           <div>
-            <p className="text-lg font-semibold text-primary">
-              {siteConfig.name}
-            </p>
-            <p className="mt-2 text-sm text-text">{footerData.tagline}</p>
+            <p className="text-lg font-semibold text-primary">{site.name}</p>
+            <p className="mt-2 text-sm text-text">{footer.tagline}</p>
           </div>
 
           <div>
-            <p className="text-sm font-medium text-primary">Navegação</p>
+            <p className="text-sm font-medium text-primary">{ui.navigation}</p>
             <ul className="mt-4 space-y-2">
-              {footerData.links.map((link) => (
+              {footer.links.map((link) => (
                 <li key={link.href}>
                   <SectionLink
                     href={link.href}
@@ -34,31 +36,31 @@ export function Footer() {
           </div>
 
           <div>
-            <p className="text-sm font-medium text-primary">Contato</p>
+            <p className="text-sm font-medium text-primary">{ui.contact}</p>
             <ul className="mt-4 space-y-3">
               <li>
                 <a
-                  href={`mailto:${siteConfig.email}`}
+                  href={`mailto:${site.email}`}
                   className="inline-flex items-center gap-2 text-sm text-text transition-colors hover:text-accent"
-                  aria-label="Enviar e-mail"
+                  aria-label={ui.sendEmail}
                 >
                   <Mail className="h-4 w-4" />
-                  {siteConfig.email}
+                  {site.email}
                 </a>
               </li>
               <li>
                 <a
-                  href={`tel:${siteConfig.phone.replace(/\D/g, "")}`}
+                  href={`tel:${site.phone.replace(/\D/g, "")}`}
                   className="inline-flex items-center gap-2 text-sm text-text transition-colors hover:text-accent"
-                  aria-label="Telefone"
+                  aria-label={ui.phone}
                 >
-                  {siteConfig.phone}
+                  {site.phone}
                 </a>
               </li>
-              {siteConfig.linkedin && (
+              {site.linkedin && (
                 <li>
                   <a
-                    href={siteConfig.linkedin}
+                    href={site.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 text-sm text-text transition-colors hover:text-accent"
@@ -71,21 +73,21 @@ export function Footer() {
               )}
               <li>
                 <a
-                  href={siteConfig.whatsapp}
+                  href={site.whatsapp}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-sm text-text transition-colors hover:text-accent"
-                  aria-label="WhatsApp"
+                  aria-label={ui.whatsapp}
                 >
                   <MessageCircle className="h-4 w-4" />
-                  WhatsApp
+                  {ui.whatsapp}
                 </a>
               </li>
               <li>
                 <ResumeDownloadLink
                   variant="ghost"
                   size="sm"
-                  label="Currículo"
+                  label={ui.resume}
                   icon="file"
                   className="h-auto px-0 text-sm text-text hover:bg-transparent hover:text-accent"
                 />
@@ -95,7 +97,9 @@ export function Footer() {
         </div>
 
         <div className="mt-12 border-t border-border pt-8">
-          <p className="text-center text-xs text-text">{footerData.copyright}</p>
+          <p className="text-center text-xs text-text">
+            © {year} {footer.copyright}
+          </p>
         </div>
       </div>
     </footer>

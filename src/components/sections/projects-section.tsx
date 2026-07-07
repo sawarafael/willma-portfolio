@@ -1,4 +1,6 @@
-import { projectsData } from "@/data/projects";
+"use client";
+
+import { useDictionary } from "@/i18n/dictionary-provider";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/shared/fade-in";
@@ -8,17 +10,17 @@ import {
 } from "@/components/shared/section-wrapper";
 
 export function ProjectsSection() {
+  const { dictionary } = useDictionary();
+  const { projects, ui } = dictionary;
+
   return (
     <SectionWrapper id="projetos">
       <FadeIn>
-        <SectionHeader
-          title={projectsData.title}
-          subtitle={projectsData.subtitle}
-        />
+        <SectionHeader title={projects.title} subtitle={projects.subtitle} />
       </FadeIn>
 
       <StaggerContainer className="grid gap-6 lg:grid-cols-3">
-        {projectsData.items.map((project) => (
+        {projects.items.map((project) => (
           <StaggerItem key={project.id}>
             <Card className="flex h-full flex-col">
               <CardHeader>
@@ -32,7 +34,7 @@ export function ProjectsSection() {
               <CardContent className="flex flex-1 flex-col gap-4">
                 <div>
                   <p className="text-xs font-medium tracking-wide text-primary uppercase">
-                    Problema
+                    {ui.problem}
                   </p>
                   <p className="mt-1.5 text-sm leading-relaxed text-text">
                     {project.problem}
@@ -40,7 +42,7 @@ export function ProjectsSection() {
                 </div>
                 <div>
                   <p className="text-xs font-medium tracking-wide text-primary uppercase">
-                    Solução
+                    {ui.solution}
                   </p>
                   <p className="mt-1.5 text-sm leading-relaxed text-text">
                     {project.solution}
@@ -48,7 +50,7 @@ export function ProjectsSection() {
                 </div>
                 <div>
                   <p className="text-xs font-medium tracking-wide text-primary uppercase">
-                    Ferramentas
+                    {ui.tools}
                   </p>
                   <div className="mt-2 flex flex-wrap gap-2">
                     {project.tools.map((tool) => (
@@ -60,7 +62,7 @@ export function ProjectsSection() {
                 </div>
                 <div className="mt-auto rounded-lg bg-accent/5 p-4">
                   <p className="text-xs font-medium tracking-wide text-accent uppercase">
-                    Resultado
+                    {ui.result}
                   </p>
                   <p className="mt-1.5 text-sm leading-relaxed text-secondary">
                     {project.result}

@@ -1,12 +1,16 @@
 import { ImageResponse } from "next/og";
-import { siteConfig } from "@/data/site";
+import { getDictionary } from "@/i18n/get-dictionary";
 
 export const runtime = "edge";
-export const alt = siteConfig.title;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
+const dictionary = getDictionary("pt");
+export const alt = dictionary.site.title;
+
 export default function OgImage() {
+  const { site, hero } = dictionary;
+
   return new ImageResponse(
     (
       <div
@@ -29,7 +33,7 @@ export default function OgImage() {
             marginBottom: 16,
           }}
         >
-          {siteConfig.role}
+          {site.role}
         </div>
         <div
           style={{
@@ -40,7 +44,7 @@ export default function OgImage() {
             marginBottom: 24,
           }}
         >
-          {siteConfig.name}
+          {site.name}
         </div>
         <div
           style={{
@@ -50,7 +54,7 @@ export default function OgImage() {
             maxWidth: 800,
           }}
         >
-          Organizando processos, fortalecendo resultados.
+          {hero.headline}
         </div>
       </div>
     ),

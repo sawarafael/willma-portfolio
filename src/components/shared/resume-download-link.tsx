@@ -1,7 +1,7 @@
 "use client";
 
 import { Download, FileDown } from "lucide-react";
-import { siteConfig } from "@/data/site";
+import { useDictionary } from "@/i18n/dictionary-provider";
 import { buttonVariants } from "@/components/ui/button";
 import { triggerDownloadCelebration } from "@/lib/download-celebration";
 import { cn } from "@/lib/utils";
@@ -15,12 +15,15 @@ interface ResumeDownloadLinkProps
 }
 
 export function ResumeDownloadLink({
-  label = "Baixar currículo",
+  label,
   className,
   variant = "default",
   size = "default",
   icon = "download",
 }: ResumeDownloadLinkProps) {
+  const { dictionary } = useDictionary();
+  const { site, ui } = dictionary;
+  const resolvedLabel = label ?? ui.resume;
   const Icon = icon === "file" ? FileDown : Download;
 
   const handleClick = () => {
@@ -29,14 +32,14 @@ export function ResumeDownloadLink({
 
   return (
     <a
-      href={siteConfig.resumeUrl}
+      href={site.resumeUrl}
       download
       onClick={handleClick}
       className={cn(buttonVariants({ variant, size }), className)}
-      aria-label={label}
+      aria-label={resolvedLabel}
     >
       <Icon className="h-4 w-4" />
-      {label}
+      {resolvedLabel}
     </a>
   );
 }

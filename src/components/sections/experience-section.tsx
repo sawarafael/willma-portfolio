@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, MapPin } from "lucide-react";
-import { experienceData } from "@/data/experience";
+import { useDictionary } from "@/i18n/dictionary-provider";
 import { Badge } from "@/components/ui/badge";
 import { FadeIn } from "@/components/shared/fade-in";
 import { SectionUniverseBackground } from "@/components/shared/section-universe-background";
@@ -13,9 +13,11 @@ import { ANIMATION } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 export function ExperienceSection() {
+  const { dictionary } = useDictionary();
+  const { experience, ui } = dictionary;
   const sectionRef = useRef<HTMLElement>(null);
   const [openId, setOpenId] = useState<string | null>(
-    experienceData.items[0]?.id ?? null,
+    experience.items[0]?.id ?? null,
   );
 
   return (
@@ -29,8 +31,8 @@ export function ExperienceSection() {
       <div className="relative z-10 mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
         <FadeIn>
           <SectionHeader
-            title={experienceData.title}
-            subtitle={experienceData.subtitle}
+            title={experience.title}
+            subtitle={experience.subtitle}
             className="[&_h2]:text-white [&_p]:text-slate-300"
           />
         </FadeIn>
@@ -42,7 +44,7 @@ export function ExperienceSection() {
           />
 
           <div className="space-y-8">
-            {experienceData.items.map((item, index) => {
+            {experience.items.map((item, index) => {
               const isOpen = openId === item.id;
               const isLeft = index % 2 === 0;
 
@@ -110,7 +112,7 @@ export function ExperienceSection() {
                               <div className="mt-5 space-y-5 border-t border-border pt-5">
                                 <div>
                                   <p className="text-xs font-medium tracking-wide text-primary uppercase">
-                                    Responsabilidades
+                                    {ui.responsibilities}
                                   </p>
                                   <ul className="mt-2 space-y-1.5">
                                     {item.responsibilities.map((resp, i) => (
@@ -127,7 +129,7 @@ export function ExperienceSection() {
 
                                 <div>
                                   <p className="text-xs font-medium tracking-wide text-primary uppercase">
-                                    Ferramentas
+                                    {ui.tools}
                                   </p>
                                   <div className="mt-2 flex flex-wrap gap-2">
                                     {item.tools.map((tool) => (
@@ -140,7 +142,7 @@ export function ExperienceSection() {
 
                                 <div>
                                   <p className="text-xs font-medium tracking-wide text-primary uppercase">
-                                    Competências desenvolvidas
+                                    {ui.skillsDeveloped}
                                   </p>
                                   <div className="mt-2 flex flex-wrap gap-2">
                                     {item.skills.map((skill) => (

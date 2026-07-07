@@ -1,12 +1,14 @@
 import type { MetadataRoute } from "next";
-import { siteConfig } from "@/data/site";
+import { getDictionary } from "@/i18n/get-dictionary";
 
 export default function robots(): MetadataRoute.Robots {
+  const { site } = getDictionary("pt");
+
   return {
     rules: {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: `${siteConfig.url}/sitemap.xml`,
+    sitemap: `${site.url}/sitemap.xml`,
   };
 }
